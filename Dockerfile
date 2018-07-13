@@ -15,6 +15,7 @@ ENV             BUILD_MODE      production
 ENV             DJANGO_SETTINGS_MODULE  config.settings.${BUILD_MODE}
 
 COPY            .   /srv/project
+RUN             mkdir   /var/log/django
 
 RUN             cp -f   /srv/project/.config/${BUILD_MODE}/nginx.conf \
                         /etc/nginx/nginx.conf && \
