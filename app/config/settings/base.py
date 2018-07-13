@@ -24,10 +24,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 ROOT_DIR = os.path.dirname(BASE_DIR)
 SECRET_DIR = os.path.join(ROOT_DIR, '.secret')
 
-secret = json.load(open(os.path.join(SECRET_DIR, 'base.json')))
-SECRET_KEY = secret['SECRET_KEY']
+secrets = json.load(open(os.path.join(SECRET_DIR, 'base.json')))
+SECRET_KEY = secrets['SECRET_KEY']
 
-print(ROOT_DIR)
+# print(ROOT_DIR)
 AUTH_USER_MODEL = 'members.User'
 
 
