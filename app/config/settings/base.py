@@ -23,6 +23,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 ROOT_DIR = os.path.dirname(BASE_DIR)
 SECRET_DIR = os.path.join(ROOT_DIR, '.secret')
+TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
 secrets = json.load(open(os.path.join(SECRET_DIR, 'base.json')))
 SECRET_KEY = secrets['SECRET_KEY']
@@ -59,7 +60,9 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            TEMPLATES_DIR,
+                 ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
