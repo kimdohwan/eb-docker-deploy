@@ -5,11 +5,11 @@ DEBUG = False
 
 ALLOWED_HOSTS = [
     'localhost',
-    # '.elasticbeanstalk.com',
+    'class.ap-northeast-2.elasticbeanstalk.com',
+    # '172.31.23.203',
 ]
 
 WSGI_APPLICATION = 'config.wsgi.production.application'
-
 
 
 
