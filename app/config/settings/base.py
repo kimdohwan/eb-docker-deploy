@@ -30,6 +30,10 @@ SECRET_KEY = secrets['SECRET_KEY']
 AUTH_USER_MODEL = 'members.User'
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+print(STATICFILES_DIRS)
 STATIC_ROOT = os.path.join(ROOT_DIR, '.static')
 
 MEDIA_URL = '/media/'
