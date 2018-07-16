@@ -27,11 +27,20 @@ SECRET_DIR = os.path.join(ROOT_DIR, '.secret')
 secrets = json.load(open(os.path.join(SECRET_DIR, 'base.json')))
 SECRET_KEY = secrets['SECRET_KEY']
 
-# print(ROOT_DIR)
 AUTH_USER_MODEL = 'members.User'
 
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(ROOT_DIR, '.static')
 
-# Application definition
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(ROOT_DIR, '.media')
+
+AWS_ACCESS_KEY_ID = secrets['AWS_ACCESS_KEY_ID']
+AWS_SECRET_ACCESS_KEY = secrets['AWS_SECRET_ACCESS_KEY']
+# AWS_STORAGE_BUCKET_NAME = secrets['AWS_STORAGE_BUCKET_NAME']
+AWS_DEFAULT_ACL = secrets['AWS_DEFAULT_ACL']
+AWS_S3_REGION_NAME = secrets['AWS_S3_REGION_NAME']
+AWS_S3_SIGNATURE_VERSION = secrets['AWS_S3_SIGNATURE_VERSION']
 
 INSTALLED_APPS = [
     'members',
@@ -72,11 +81,6 @@ TEMPLATES = [
     },
 ]
 
-
-
-
-
-
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 
@@ -95,7 +99,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
@@ -108,6 +111,3 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-
-

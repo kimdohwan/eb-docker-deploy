@@ -3,27 +3,23 @@ from .base import *
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+secrets = json.load(open(os.path.join(SECRET_DIR, 'dev.json')))
+
+
 ALLOWED_HOSTS = []
 
 WSGI_APPLICATION = 'config.wsgi.dev.application'
 
+DATABASES = secrets['DATABASES']
 
+# ------------------S3 설 정----------------
+INSTALLED_APPS += [
+    'storages',
+]
 
+DEFAULT_FILE_STORAGE = 'config.storages.S3DefaultStorage'
+STATICFILES_STORAGE = 'config.storages.S3StaticStorage'
 
+AWS_STORAGE_BUCKET_NAME = secrets['AWS_STORAGE_BUCKET_NAME']
 
-# Database
-# https://docs.djangoproject.com/en/2.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.0/howto/static-files/
-
-STATIC_URL = '/static/'
-
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# ------------------------------------------
