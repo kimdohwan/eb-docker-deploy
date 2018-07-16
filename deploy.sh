@@ -2,16 +2,17 @@
 
 
 pipenv lock -r > requirements.txt
-echo " make requirements.txt"
+echo " Make requirements.txt"
 
 git add requirements.txt
-echo " git add requirements.txt"
+echo " Add requirements.txt"
 
 git add .secret -f
-echo " Git add .se cret"
+echo " Add .secret"
 
-git add .media -f
-git add .static -f
+#git add .media -f
+#git add .static -f
+#echo " Add .static"
 
 eb deploy --profile eb-docker-deploy --staged
 echo " Eb deploy"
@@ -23,4 +24,4 @@ rm -rf requirements.txt
 echo " Delete requirements"
 
 eb open
-echo " Open"
+echo " Open eb"

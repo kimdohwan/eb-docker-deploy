@@ -1,26 +1,36 @@
+import sys
+
 from .base import *
 
-# SECURITY WARNING: don't run with debug turned on in production!
+print(sys.argv)
+
 DEBUG = False
 
 secrets = json.load(open(os.path.join(SECRET_DIR, 'production.json')))
 
 ALLOWED_HOSTS = secrets['ALLOWED_HOSTS']
+RUNSERVER = 'runserver' in sys.argv
+if RUNSERVER:
+    DEBUG = True
+    ALLOWED_HOSTS = [
+        "localhost",
+        "127.0.0.1",
+    ]
 
 WSGI_APPLICATION = 'config.wsgi.production.application'
 
 DATABASES = secrets['DATABASES']
 
 # # ------------------S3 설 정----------------
-# INSTALLED_APPS += [
-#     'storages',
-# ]
-#
-# DEFAULT_FILE_STORAGE = 'config.storages.S3DefaultStorage'
+INSTALLED_APPS += [
+    'storages',
+]
+
+DEFAULT_FILE_STORAGE = 'config.storages.S3DefaultStorage'
 # STATICFILES_STORAGE = 'config.storages.S3StaticStorage'
-#
-# AWS_STORAGE_BUCKET_NAME = secrets['AWS_STORAGE_BUCKET_NAME']
-#
+
+AWS_STORAGE_BUCKET_NAME = secrets['AWS_STORAGE_BUCKET_NAME']
+
 # # ------------------------------------------
 
 
