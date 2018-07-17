@@ -17,10 +17,10 @@ echo " Add .secret"
 eb deploy --profile eb-docker-deploy --staged
 echo " Eb deploy"
 
-git reset HEAD
+git reset HEAD ./.secret/ requirements.txt
 echo " Git reset HEAD"
 
-rm -rf requirements.txt
+rm requirements.txt
 echo " Delete requirements"
 
 eb open
