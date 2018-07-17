@@ -14,7 +14,8 @@ User = get_user_model()
 class Command(BaseCommand):
     def handle(self, *args, **options):
         secrets = json.load(open(os.path.join(SECRET_DIR, 'base.json')))
-        if not User.objects.filter(username=secrets['SUPERUSER_USERNAME'].exists()):
+
+        if not User.objects.filter(username=secrets['SUPERUSER_USERNAME']).exists():
             User.objects.create_superuser(
                 username=secrets['SUPERUSER_USERNAME'],
                 password=secrets['SUPERUSER_PASSWORD'],

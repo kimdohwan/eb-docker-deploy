@@ -7,8 +7,8 @@ User = get_user_model()
 
 class SettingsBackend:
     def authenticate(self, request, username=None, password=None):
-        login_vaild = (settings.ADMIN_LOGIN == username)
-        pwd_valid = check_password(password, settings.ADMIN_PASSOWORD)
+        login_vaild = settings.ADMIN_USERNAME == username
+        pwd_valid = check_password(password, settings.ADMIN_PASSWORD)
 
         if login_vaild and pwd_valid:
             try:
@@ -21,3 +21,8 @@ class SettingsBackend:
             return user
         return None
 
+    def get_user(self, user_id):
+        try:
+            return User.objects.get(pk=user_id)
+        except User.DoesNotExist:
+            return None

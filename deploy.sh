@@ -10,6 +10,8 @@ echo " Add requirements.txt"
 git add .secret -f
 echo " Add .secret"
 
+git add --all
+
 #git add .media -f
 #git add .static -f
 #echo " Add .static"
@@ -18,7 +20,7 @@ eb deploy --profile eb-docker-deploy --staged
 echo " Eb deploy"
 
 git reset HEAD ./.secret/ requirements.txt
-echo " Git reset HEAD"
+echo " Git reset HEAD .secret/ requirements.txt"
 
 rm requirements.txt
 echo " Delete requirements"

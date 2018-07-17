@@ -27,7 +27,13 @@ SECRET_DIR = os.path.join(ROOT_DIR, '.secret')
 secrets = json.load(open(os.path.join(SECRET_DIR, 'base.json')))
 SECRET_KEY = secrets['SECRET_KEY']
 
+ADMIN_USERNAME = 'admin'
+ADMIN_PASSWORD = 'pbkdf2_sha256$100000$4V09IRkKbekf$6phpcqfTOI7IqfNdZ1EbkO9EDJRoupw9mUyhJN3THbo='
 AUTH_USER_MODEL = 'members.User'
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'members.backends.SettingsBackend',
+]
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
